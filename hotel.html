@@ -1,0 +1,196 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Form</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <script>
+        function RegisteredClick(){
+         var roomName = "";
+         var itemName = "";
+         var roomCost = "";
+         var itemCost = "";
+         var total = 0;
+         
+         var deluxe = document.getElementById("optDeluxe");
+         var nondeluxe = document.getElementById("optNonDeluxe");
+
+         if (deluxe.checked) {
+            roomCost = 799;
+            roomName = deluxe.value;
+         }
+
+         if (nondeluxe.checked) {
+            roomCost = 1099;
+            roomName = nondeluxe.value;
+         }
+
+         var veg = document.getElementById("optVeg");
+         var NonVeg = document.getElementById("optNonVeg");
+
+          if (veg.checked) {
+            itemCost = 299;
+            roomCost += itemCost;
+            itemName += veg.value;
+          }
+
+          if (NonVeg.checked) {
+            itemCost = 799;
+            itemName += NonVeg.value;
+            roomCost+=itemCost;
+          }
+
+          total  = roomCost;
+
+          document.getElementById("lblCustomer").innerHTML = document.getElementById("txtName").value;
+          document.getElementById("lblPh").innerHTML = document.getElementById("txtPh").value;
+          document.getElementById("lblAddress").innerHTML = document.getElementById("txtAddress").value;
+          document.getElementById("lblDate").innerHTML = document.getElementById("txtDate").value;
+          document.getElementById("lblPerson").innerHTML = document.getElementById("txtPerson").value;
+          document.getElementById("lblDay").innerHTML = document.getElementById("txtDay").value;
+
+
+          document.getElementById("lblRoom").innerHTML = roomName;
+          document.getElementById("lblItem").innerHTML = itemName;
+
+          document.getElementById("lblTotal").innerHTML = total;
+
+        }
+    </script>
+
+</head>
+<body class="container-lg">
+    <header class="text-center fw-bold mt-4 my-2 p-3" style="border: 2px solid black;color: aliceblue; background-color: black;">
+        <h5>CUSTOMER REGISTRATION FORM</h5>
+    </header>
+    <section>
+        <div class="accordion" id="hotel">
+            <div class="accordion-item">
+            <div class="accordion-header">
+                <button data-bs-target="#customer" data-bs-toggle="collapse" class="btn btn-danger w-100">Customer Details</button>
+            </div>
+            <div class="accordion-collapse collapse" id="customer" data-bs-parent="hotel">
+            <div class="accordion-body">
+                <div id="success">
+                    <dl>
+                        <dt>Customer Name :</dt>
+                        <dd><input type="text" name="" id="txtName" class="form-control mt-2" ></dd>
+                        <dt>Customer Ph No. :</dt>
+                        <dd><input type="text" name="" id="txtPh" class="form-control mt-2" ></dd>
+                        <dt>Hotel Address :</dt>
+                        <input type="text" name="" id="txtAddress" class="form-control mt-2">
+                        <dt>Date and Time :</dt>
+                        <dd><input type="datetime-local" name="" id="txtTime" class="form-control mt-2"></dd>
+                        <dt>Total No. of Persons :</dt>
+                        <input type="text" name="" id="txtPerson" class="form-control mt-2">
+                        <dt>Total No. of Days :</dt>
+                        <dd><input type="text" name="" id="txtDay" class="form-control mt-2"></dd>
+                        
+                    </dl>
+                    <button class="btn btn-secondary mt-2 w-100" onclick="RegisterClick()">Register</button>
+                </div>
+            </div>
+            </div>
+            </div>
+
+
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <button data-bs-target="#room" data-bs-toggle="collapse" class="btn btn-primary w-100">Select Your Room</button>
+                </div>
+                <div class="accordion-collapse collapse" id="room" data-bs-parent="#hotel">
+                    <div class="accordion-body row text-center">
+                        <div class="col">
+                            <h6>DELUXE</h6>
+                            <img src="deluxe.jpg" width="200" height="200">
+                            <div>
+                                <input type="radio" class="form-check-input" id="optDeluxe" name="Room" value="Deluxe"><label>799/-</label>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <h6>NON-DELUXE</h6>
+                            <img src="non del.jpg" width="200" height="200">
+                            <div>
+                                <input type="radio" class="form-check-input" id="optNonDeluxe" name="Room" value="NonDeluxe"><label>1099/-</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <button data-bs-target="#item" data-bs-toggle="collapse"  class="btn btn-primary w-100">Select Your Item</button>
+                </div>
+                <div class="accordion-collapse collapse" id="item" data-bs-parent="hotel">
+                    <div class="accordion-body row text-center">
+                        <div class="col">
+                            <h6>VEG</h6>
+                            <img src="veg.jpeg" width="200" height="200">
+                            <div>
+                                <input type="checkbox" class="form-check-input" id="optVeg" name="item" value="Veg" ><label>299/-</label>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <h6>NON-VEG</h6>
+                            <img src="non veg.jpg" width="200" height="200">
+                            <div>
+                                <input type="checkbox" class="form-check-input" id="optNonVeg" name="item" value="NonVeg"><label>799/-</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-danger my-2 w-100" data-bs-target="#Summary" data-bs-toggle="modal" onclick="RegisteredClick()">Successfully</button>
+
+
+                    <div class="modal fade" id="Summary">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="fw-bold">Your Bill Summary</div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <dl>
+                                            <dt>Customer Name</dt>
+                                            <dd id="lblCustomer"></dd>
+                                            <dt>Ph No</dt>
+                                            <dd id="lblPh"></dd>
+                                            <dt>Address</dt>
+                                            <dd id="lblAddress"></dd>
+                                            <dt>Rooms</dt>
+                                            <dd id="lblRoom"></dd>
+                                            <dt>Date</dt>
+                                            <dd id="lblDate"></dd>
+                                            <dt>Items</dt>
+                                            <dd id="lblItem"></dd>
+                                            <dt>No. of persons</dt>
+                                            <dd id="lblPerson"></dd>
+                                            <dt>No. of Days</dt>
+                                            <dd id="lblDay"></dd>
+                                            <dt>Total</dt>
+                                            <dd id="lblTotal"></dd>
+                                        </dl>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-warning" data-bs-dismiss="modal"> OK </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+        </div>
+    </section>
+</body>
+</html>
